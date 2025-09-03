@@ -578,14 +578,30 @@ html.no-js .site-links { display: flex; }
 
 /* Desktop layout */
 @media (min-width: 769px) {
-  .mobile-nav-header { display: none; }
-  .site-links { display:flex; }
-@media (max-width: 1024px) {
-  .site-links { gap: .4rem; }
-  .site-links a { padding: .5rem .65rem; }
-  .site-links a.cta { padding: .55rem .95rem; }
+.mobile-nav-header { display: none; }
+.site-links { display:flex; }
 
-	
+
+/* Optional desktop hardening – prevents any leaked mobile styles */
+#site-nav {
+position: static;
+inset: auto;
+width: auto;
+height: auto;
+padding: 0;
+background: transparent;
+box-shadow: none;
+transform: none;
+transition: none;
+}
+
+
+/* Slight spacing tuning for medium desktops */
+@media (max-width: 1024px) {
+.site-links { gap: .4rem; }
+.site-links a { padding: .5rem .65rem; }
+.site-links a.cta { padding: .55rem .95rem; }
+}
 }
 
 /* Mobile off-canvas behavior */
@@ -6186,5 +6202,4 @@ body.patient-info .top-bar span { color: #fff !important; }
 #site-nav .menu-cta:focus-visible{ outline:3px solid var(--color-primary-accent); outline-offset:2px }
 
 /* Ensure top Book CTA never gets hidden by duplicate-hiding rule */
-#site-nav .menu-ctas .menu-cta.book{display:grid !important}
 #site-nav .menu-ctas .menu-cta.book.hide-dup{display:grid !important}
