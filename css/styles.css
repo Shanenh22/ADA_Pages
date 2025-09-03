@@ -6072,3 +6072,119 @@ body.patient-info .top-bar span { color: #fff !important; }
     flex: 1 1 100%;
   }
 }
+
+
+/* ======== ADA Mobile Bottom CTA Bar & Mobile Header Tweaks (added 2025-09-02) ======== */
+
+/* Global Sticky CTA Bar (mobile only) */
+.sticky-cta-bar { display:none; }
+
+@media (max-width: 768px) {
+  :root{
+    --cta-bar-h: 64px; /* meets 44x44 target size */
+  }
+  .sticky-cta-bar {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 0.5rem; padding: 0.5rem;
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+    background: #fff; box-shadow: 0 -4px 16px rgba(0,0,0,.12);
+    z-index: 1001; /* above header */
+  }
+  .sticky-cta-bar .cta-link{
+    display: grid; place-items: center;
+    height: var(--cta-bar-h);
+    border-radius: 12px; text-decoration: none; font-weight: 700;
+    border: 2px solid transparent;
+  }
+  .sticky-cta-bar .call     { background: var(--color-primary-accent); color:#fff; }
+  .sticky-cta-bar .book     { background: var(--color-primary);        color:#fff; }
+  .sticky-cta-bar .directions { background: var(--color-neutral-medium); color: var(--color-text-primary); }
+  .sticky-cta-bar .cta-link:focus-visible{ outline: 3px solid var(--color-primary-accent); outline-offset: 2px; }
+  body { padding-bottom: calc(var(--cta-bar-h) + 1rem); }
+}
+
+@media (max-width: 768px) {
+  .site-header .navbar { padding: .5rem .75rem; }
+  .site-header .logo img{ max-height: 28px; }
+}
+
+@media (max-width: 768px) {
+  .hero { padding-top: calc(2.5rem + 56px); }
+}
+
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+@media (max-width:768px){
+  .emergency-bottom-bar, .emergency-sticky-cta { display:none !important; }
+}
+
+
+/* ===== Mobile Menu Drawer Enhancements (ADA-friendly) ===== */
+#site-nav .menu-header{padding:1rem 0 .5rem;border-bottom:1px solid rgba(0,0,0,.06);position:relative}
+#site-nav .menu-close{border:0;background:none;font-size:1.25rem;line-height:1;position:absolute;right:.5rem;top:.5rem;min-height:44px;min-width:44px}
+#site-nav .brand-row{display:flex;gap:.75rem;align-items:center}
+#site-nav .brand{height:32px}
+#site-nav .practice-meta{font-size:.9rem}
+#site-nav .practice-name{font-weight:700}
+#site-nav .practice-hours{color:var(--color-text-secondary)}
+#site-nav .menu-ctas{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.75rem 0}
+#site-nav .menu-cta{display:grid;place-items:center;height:48px;border-radius:12px;text-decoration:none;font-weight:700;border:2px solid transparent}
+#site-nav .menu-cta.primary{background:var(--color-primary-accent);color:#fff}
+#site-nav .menu-cta:not(.primary){background:var(--color-neutral-medium);color:var(--color-text-primary)}
+#site-nav .menu-cta:focus-visible{outline:3px solid var(--color-primary-accent);outline-offset:2px}
+#site-nav .menu-section{padding:1rem 0;border-bottom:1px solid rgba(0,0,0,.06)}
+#site-nav .section-title{font-size:.95rem;color:var(--color-text-secondary);margin:.25rem 0 .5rem}
+#site-nav .intent-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;list-style:none;padding:0;margin:0}
+#site-nav .intent-grid a{display:block;background:#fff;border:1px solid var(--color-neutral-medium);border-radius:10px;padding:.75rem;text-decoration:none}
+#site-nav .intent-grid a:focus-visible{outline:3px solid var(--color-primary-accent);outline-offset:2px}
+#site-nav .menu-links{list-style:none;padding:0;margin:0;display:grid;gap:.25rem}
+#site-nav .menu-links a{display:block;padding:.6rem .25rem;text-decoration:none}
+#site-nav .menu-footer{padding:1rem 0 .5rem}
+#site-nav .pill{display:inline-block;border-radius:999px;padding:.35rem .6rem;font-size:.8rem;background:var(--color-neutral-medium)}
+#site-nav .pill.insurance{background:var(--color-success);color:var(--color-primary)}
+#site-nav .pill.rating{margin-left:.5rem}
+#site-nav .text-link{display:inline-block;margin-top:.5rem}
+
+/* Hide duplicate Book links below if a top CTA exists */
+#site-nav .hide-dup{display:none !important;}
+
+
+/* ===== Rev2: Drawer adjustments ===== */
+#site-nav .menu-header .practice-meta { display:none; } /* remove title/hours line */
+
+#site-nav { padding-bottom: calc(var(--cta-bar-h, 64px) + 32px); } /* extra bottom space above sticky CTA */
+
+/* Make I-need section match Patients list */
+#site-nav .intent-grid { display: block; } /* reset grid */
+#site-nav .intent-grid li { list-style: none; }
+#site-nav .intent-grid a {
+  display:block;
+  padding:.6rem .25rem;
+  text-decoration:none;
+  border:none;
+  background:transparent;
+  border-radius:0;
+}
+
+
+/* ===== Rev3: Drawer bottom spacing ===== */
+#site-nav { padding-bottom: calc(var(--cta-bar-h, 64px) + 48px); }
+
+
+/* ===== Rev4: CTA color parity + label change ===== */
+/* Sticky bottom bar: rename .location -> .directions and keep colors in sync with top */
+@media (max-width: 768px) {
+  .sticky-cta-bar .directions { background: var(--color-neutral-medium); color: var(--color-text-primary); }
+  /* maintain existing .call and .book colors */
+}
+
+/* Top menu CTA role-based classes */
+#site-nav .menu-cta.call       { background: var(--color-primary-accent); color:#fff }
+#site-nav .menu-cta.book       { background: var(--color-primary);        color:#fff }
+#site-nav .menu-cta.directions { background: var(--color-neutral-medium); color: var(--color-text-primary); }
+#site-nav .menu-cta:focus-visible{ outline:3px solid var(--color-primary-accent); outline-offset:2px }
+
+/* Ensure top Book CTA never gets hidden by duplicate-hiding rule */
+#site-nav .menu-ctas .menu-cta.book{display:grid !important}
+#site-nav .menu-ctas .menu-cta.book.hide-dup{display:grid !important}
